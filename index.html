@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zurich Seguros · Lectura preliminar GEO · Morillas</title>
+<meta name="description" content="Lectura preliminar de la presencia de Zurich Seguros en motores generativos. Preparado por Morillas con instrumentación de 498A · GEOradar." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     Zurich Seguros · Lectura preliminar GEO
+     Diseño: editorial / consultoría estratégica
+     ============================================================ */
+
+  :root {
+    --paper: #FAF8F3;
+    --paper-deep: #F2EEE5;
+    --ink: #1A1A1A;
+    --ink-soft: #3A3A3A;
+    --ink-muted: #6B6B6B;
+    --ink-faint: #A8A496;
+    --rule: #E5DFD2;
+    --rule-strong: #C8C0AC;
+    --accent: #1F3A5F;     /* deep navy — restrained editorial */
+    --accent-soft: #4F6B8E;
+    --accent-bg: #ECEFF4;
+    --highlight: #B8924E;  /* warm bronze for select accents */
+    --positive: #4A7B5E;
+    --neutral: #8A8678;
+    --negative: #A1574A;
+    --serif: 'Fraunces', 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  /* ----------- Layout containers ----------- */
+  .page {
+    min-height: 100vh;
+    padding: 96px 8vw;
+    position: relative;
+    page-break-after: always;
+  }
+
+  .page-narrow {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .page-wide {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  /* ----------- Cover ----------- */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:
+      radial-gradient(ellipse at top right, rgba(31,58,95,0.06) 0%, transparent 60%),
+      var(--paper);
+    padding: 72px 8vw;
+  }
+
+  .cover-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .cover-meta-block { display: flex; flex-direction: column; gap: 6px; }
+  .cover-meta-label { color: var(--ink-faint); font-weight: 500; }
+  .cover-meta-value { color: var(--ink); font-weight: 600; letter-spacing: 0.14em; }
+
+  .cover-center {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 80px;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .cover-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 1100px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .cover-sub {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin-top: 12px;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    border-top: 1px solid var(--rule);
+    padding-top: 32px;
+  }
+
+  .cover-credit {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+
+  .cover-credit strong { color: var(--ink); font-weight: 600; }
+
+  .cover-id {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  /* ----------- Section header ----------- */
+  .section-num {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    border-top: 1px solid var(--accent);
+    padding-top: 6px;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+
+  .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  h1.section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 4.2vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  h1.section-title em { font-style: italic; color: var(--accent); }
+
+  .section-lead {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-weight: 300;
+    margin-bottom: 56px;
+    max-width: 640px;
+  }
+
+  /* ----------- Body type ----------- */
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 56px 0 16px;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 36px 0 12px;
+  }
+
+  h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    margin: 24px 0 8px;
+  }
+
+  p {
+    margin-bottom: 18px;
+    max-width: 680px;
+  }
+
+  p.intro {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+
+  ul, ol {
+    margin: 0 0 18px 0;
+    padding-left: 24px;
+    max-width: 680px;
+  }
+
+  ul li, ol li { margin-bottom: 8px; }
+
+  ul.clean { list-style: none; padding-left: 0; }
+  ul.clean li {
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  ul.clean li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  strong { font-weight: 600; color: var(--ink); }
+  em { font-style: italic; }
+
+  /* ----------- Pull quote ----------- */
+  .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--accent);
+    border-left: 2px solid var(--accent);
+    padding: 8px 0 8px 32px;
+    margin: 48px 0;
+    max-width: 720px;
+  }
+
+  .pullquote-attr {
+    display: block;
+    margin-top: 16px;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  /* ----------- Data display ----------- */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 32px 0;
+  }
+
+  .kpi-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .kpi {
+    background: var(--paper);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .kpi-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  .kpi-value {
+    font-family: var(--serif);
+    font-size: 44px;
+    line-height: 1;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .kpi-value .unit {
+    font-size: 22px;
+    color: var(--ink-muted);
+    font-weight: 300;
+    margin-left: 2px;
+  }
+
+  .kpi-note {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  /* ----------- Data table ----------- */
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+
+  table.data th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  table.data td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    vertical-align: top;
+  }
+
+  table.data tr:hover td { background: var(--paper-deep); }
+
+  table.data td.num,
+  table.data th.num {
+    text-align: right;
+    font-family: var(--mono);
+    font-feature-settings: "tnum";
+  }
+
+  table.data td.brand-name { font-weight: 500; }
+  table.data td.brand-name.own {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  table.data td.brand-name.own::after {
+    content: 'OWN';
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-weight: 600;
+  }
+
+  /* ----------- Bar (inline) ----------- */
+  .bar-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 60px;
+    gap: 16px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar-label { font-size: 14px; font-weight: 500; }
+  .bar-track {
+    height: 8px;
+    background: var(--rule);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--accent);
+  }
+  .bar-fill.alt { background: var(--accent-soft); }
+  .bar-value {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  /* ----------- Sentiment bar (composite) ----------- */
+  .sentiment-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 0;
+    overflow: hidden;
+    margin: 16px 0;
+    border: 1px solid var(--rule-strong);
+  }
+  .sentiment-bar > div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    font-size: 10px;
+    font-family: var(--mono);
+    font-weight: 600;
+  }
+  .sentiment-positive { background: var(--positive); }
+  .sentiment-neutral { background: var(--neutral); }
+  .sentiment-negative { background: var(--negative); }
+
+  .sentiment-legend {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 24px;
+  }
+  .sentiment-legend span::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .sentiment-legend .pos::before { background: var(--positive); }
+  .sentiment-legend .neu::before { background: var(--neutral); }
+  .sentiment-legend .neg::before { background: var(--negative); }
+
+  /* ----------- Two columns ----------- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin: 32px 0;
+  }
+
+  .two-col-asym {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 56px;
+    margin: 32px 0;
+  }
+
+  /* ----------- Callout ----------- */
+  .callout {
+    background: var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    padding: 24px 28px;
+    margin: 32px 0;
+    max-width: 720px;
+  }
+
+  .callout-title {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .callout p { margin-bottom: 0; font-size: 15px; }
+  .callout p + p { margin-top: 12px; }
+
+  .callout.honest {
+    border-left-color: var(--highlight);
+    background: #FAF4E8;
+  }
+  .callout.honest .callout-title { color: var(--highlight); }
+
+  /* ----------- Verbatim block ----------- */
+  .verbatim {
+    background: var(--paper);
+    border: 1px solid var(--rule-strong);
+    padding: 32px 36px;
+    margin: 32px 0;
+    max-width: 760px;
+    position: relative;
+  }
+
+  .verbatim-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+
+  .verbatim-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+  }
+  .verbatim-meta strong { color: var(--accent); font-weight: 600; }
+
+  .verbatim-prompt {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 20px;
+    padding-left: 18px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .verbatim-prompt-label {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .verbatim-response {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .verbatim-response-label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .verbatim-response p { margin-bottom: 12px; max-width: none; }
+  .verbatim-response strong { background: rgba(31,58,95,0.08); padding: 1px 4px; border-radius: 2px; color: var(--accent); }
+  .verbatim-response .zurich-mention {
+    background: rgba(31,58,95,0.08);
+    padding: 0 4px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .verbatim-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  /* ----------- Index ----------- */
+  ol.toc {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0;
+    counter-reset: toc;
+    max-width: 720px;
+  }
+  ol.toc > li {
+    counter-increment: toc;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  ol.toc > li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  ol.toc .toc-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  ol.toc .toc-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ----------- Footer ----------- */
+  .doc-footer {
+    border-top: 1px solid var(--rule-strong);
+    padding: 32px 8vw;
+    background: var(--paper-deep);
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .doc-footer strong { color: var(--ink); }
+
+  /* ----------- Closing CTA ----------- */
+  .cta-block {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 72px 64px;
+    margin: 80px 0 0;
+    border-radius: 0;
+  }
+  .cta-block h2 {
+    font-family: var(--serif);
+    font-size: 36px;
+    color: var(--paper);
+    font-weight: 400;
+    margin: 0 0 20px;
+    line-height: 1.2;
+  }
+  .cta-block p {
+    color: rgba(255,255,255,0.85);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+  .cta-block .cta-meta {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+  .cta-block .cta-meta strong { color: var(--paper); }
+
+  /* ----------- Responsive ----------- */
+  @media (max-width: 720px) {
+    .page { padding: 64px 24px; }
+    .cover { padding: 48px 24px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr !important; }
+    .kpi-grid.cols-4 { grid-template-columns: 1fr 1fr !important; }
+    .two-col, .two-col-asym { grid-template-columns: 1fr; gap: 32px; }
+    .cta-block { padding: 48px 28px; }
+    .bar-row { grid-template-columns: 100px 1fr 50px; gap: 12px; }
+    .verbatim { padding: 24px; }
+    .pullquote { font-size: 22px; padding-left: 20px; margin: 32px 0; }
+    .cover-bottom { flex-direction: column; align-items: flex-start; }
+    .cover-id { text-align: left; }
+    .doc-footer { padding: 32px 24px; flex-direction: column; }
+  }
+
+  /* ----------- Zurich vs Mercado (comparison) ----------- */
+  .zvm-block {
+    margin: 32px 0 16px;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .zvm-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 80px;
+    gap: 28px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .zvm-attr-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .zvm-attr-meta {
+    font-family: var(--sans);
+    font-size: 10px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .zvm-attr-meta.positive { color: var(--positive); }
+  .zvm-attr-meta.slightly { color: var(--accent-soft); }
+
+  .zvm-bars { display: flex; flex-direction: column; gap: 8px; }
+
+  .zvm-bar-pair {
+    display: grid;
+    grid-template-columns: 64px 1fr 52px;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .zvm-bar-tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .zvm-bar-tag.muted {
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .zvm-bar-track {
+    height: 8px;
+    background: var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zvm-bar-fill { height: 100%; }
+  .zvm-bar-fill.zurich { background: var(--accent); }
+  .zvm-bar-fill.market { background: var(--ink-faint); }
+
+  .zvm-bar-val {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .zvm-bar-val.muted {
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .zvm-gap {
+    font-family: var(--mono);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--positive);
+    text-align: center;
+    background: rgba(74, 123, 94, 0.10);
+    padding: 8px 6px;
+    border: 1px solid rgba(74, 123, 94, 0.25);
+  }
+
+  .zvm-rank {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-right: 8px;
+  }
+
+  /* ----------- Print ----------- */
+  @media print {
+    @page { size: A4; margin: 18mm 16mm; }
+    body { background: white; font-size: 11pt; }
+    .page { min-height: auto; padding: 0 0 24mm 0; page-break-after: always; }
+    .cover { min-height: auto; padding: 0 0 24mm; }
+    .cover-center { padding-top: 40mm; }
+    .cta-block { padding: 32mm 16mm; }
+    .pullquote { page-break-inside: avoid; }
+    .verbatim { page-break-inside: avoid; }
+    .kpi-grid { page-break-inside: avoid; }
+    .doc-footer { page-break-before: avoid; }
+    h1.section-title { page-break-after: avoid; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COVER
+     ============================================================ -->
+<section class="cover">
+  <div class="cover-meta">
+    <div class="cover-meta-block">
+      <span class="cover-meta-label">Preparado para</span>
+      <span class="cover-meta-value">Zurich Seguros · España</span>
+    </div>
+    <div class="cover-meta-block" style="text-align:right">
+      <span class="cover-meta-label">Lectura</span>
+      <span class="cover-meta-value">Abril 2026</span>
+    </div>
+  </div>
+
+  <div class="cover-center">
+    <span class="cover-eyebrow">Lectura preliminar · Generative Engine Optimization</span>
+    <h1 class="cover-title">
+      Cómo se está hablando<br />
+      de <em>Zurich</em> dentro<br />
+      de los motores generativos.
+    </h1>
+    <p class="cover-sub">
+      Una primera lectura, basada en datos reales, de la presencia, narrativa y posición competitiva de Zurich Seguros cuando los nuevos asistentes de IA responden preguntas sobre seguros en España.
+    </p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-credit">
+      <strong>Preparado y presentado por Morillas.</strong><br />
+      Consultoría especializada: <strong>498 Advance</strong>. Plataforma analítica: <strong>GEOradar</strong>.<br />
+      Documento de trabajo dirigido al equipo directivo de Zurich.
+    </div>
+    <div class="cover-id">
+      DOC · ZUR-GEO-PREL-001<br />
+      v1.0 · 19.04.2026<br />
+      Confidencial
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     EXECUTIVE SUMMARY
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">00 · Resumen ejecutivo</span>
+    <h1 class="section-title">Lo que esta lectura ya permite afirmar.</h1>
+    <p class="section-lead">
+      Un primer corte sobre 300 respuestas reales de IA generativa nos dice tres cosas relevantes sobre la posición de Zurich. Y deja una cuarta cuestión, mucho más estratégica, abierta para el estudio completo.
+    </p>
+
+    <div class="kpi-grid cols-4">
+      <div class="kpi">
+        <span class="kpi-label">Share of Voice</span>
+        <span class="kpi-value">36,3<span class="unit">%</span></span>
+        <span class="kpi-note">Sobre el total de menciones espontáneas en el segmento.</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Share of Recommendation</span>
+        <span class="kpi-value">81,8<span class="unit">%</span></span>
+        <span class="kpi-note">Cuando la IA recomienda explícitamente, lo hace mayoritariamente con Zurich.</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Sentimiento positivo</span>
+        <span class="kpi-value">52<span class="unit">%</span></span>
+        <span class="kpi-note">Sobre menciones de Zurich. Por debajo de Mapfre (57%) y Mutua (56%).</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Citaciones owned</span>
+        <span class="kpi-value">32,2<span class="unit">%</span></span>
+        <span class="kpi-note">Solo 1 de cada 3 citas que sostienen el relato son del propio Zurich.</span>
+      </div>
+    </div>
+
+    <h3>Cinco lecturas iniciales</h3>
+    <ul class="clean">
+      <li><strong>Zurich entra en la conversación generativa con cuota relevante.</strong> Cuando un usuario pregunta a un LLM sobre seguros en España, Zurich aparece en aproximadamente uno de cada tres casos. Eso ya es un activo digital significativo.</li>
+      <li><strong>Cuando aparece, suele ser para recomendar.</strong> El 81,8% de las recomendaciones explícitas que detectamos van a Zurich. La marca convierte presencia en preferencia.</li>
+      <li><strong>Zurich domina en autoridad cualitativa frente al mercado.</strong> En los 8 atributos clave medidos (solidez financiera, tecnología, automation, mobile-app, red de talleres, personalización, transparencia, precio), Zurich supera la media del mercado entre <strong>+28,8 y +55,0 puntos</strong> de Business Impact Score. La marca <em>no</em> está construyendo reputación: ya la tiene; falta amplificarla.</li>
+      <li><strong>El relato lo construyen sobre todo terceros.</strong> Dos tercios de las citaciones (66,7%) son third-party. Zurich tiene un margen claro para ganar control de su propio storytelling y reducir dependencia narrativa de comparadores y prescriptores.</li>
+      <li><strong>El sentiment porcentual sigue mejorable.</strong> 52% positivo en menciones sitúa a Zurich ligeramente por debajo de Mapfre (57%) y Mutua (56%) en una distribución muy plana. Es la dimensión donde la auditoría completa identifica intervenciones de mayor recorrido inmediato.</li>
+    </ul>
+
+    <div class="callout honest">
+      <span class="callout-title">Nota sobre el alcance</span>
+      <p>
+        Este documento es una <strong>primera lectura</strong>, no una conclusión. Recoge lo que ya se puede afirmar a partir de un piloto de 300 respuestas, dos personas y un solo motor generativo (Gemini), sobre tres líneas de producto (coche, hogar, vida). La auditoría completa cubre múltiples engines, todas las personas, el funnel completo y profundidad por línea de producto.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     01 · ALCANCE
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">01 · Alcance del análisis ejecutado</span>
+    <h1 class="section-title">Qué se ha analizado <em>realmente</em>.</h1>
+    <p class="section-lead">
+      Para que la lectura sea creíble, lo primero es ser claros sobre el perímetro del piloto. Ni más, ni menos.
+    </p>
+
+    <div class="kpi-grid cols-4">
+      <div class="kpi"><span class="kpi-label">Respuestas</span><span class="kpi-value">300</span><span class="kpi-note">Respuestas completas analizadas.</span></div>
+      <div class="kpi"><span class="kpi-label">Menciones</span><span class="kpi-value">612</span><span class="kpi-note">Menciones de marca detectadas.</span></div>
+      <div class="kpi"><span class="kpi-label">Personas</span><span class="kpi-value">2</span><span class="kpi-note">Conductor / Familia.</span></div>
+      <div class="kpi"><span class="kpi-label">Motor</span><span class="kpi-value" style="font-size:24px;line-height:1.2">Gemini<br/>2.5 FL</span><span class="kpi-note">Google Gemini 2.5 Flash Lite.</span></div>
+    </div>
+
+    <h3>Personas activadas en este piloto</h3>
+    <table class="data">
+      <thead><tr><th>Persona</th><th>Perfil</th><th class="num">Fase de funnel cubierta</th></tr></thead>
+      <tbody>
+        <tr><td class="brand-name">Conductor que compara seguro de coche</td><td>Adulto que está renovando o cambiando póliza de auto y compara opciones.</td><td class="num">Awareness</td></tr>
+        <tr><td class="brand-name">Familia que busca seguro de hogar</td><td>Núcleo familiar evaluando aseguradora para hogar y coberturas asociadas.</td><td class="num">Awareness</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Líneas de producto cubiertas</h3>
+    <ul class="clean">
+      <li><strong>Seguro de coche</strong> — coberturas, comparativa terceros / todo riesgo, asistencia y siniestros.</li>
+      <li><strong>Seguro de hogar</strong> — coberturas básicas, exclusiones, asistencia, mascotas y niños.</li>
+      <li><strong>Seguro de vida y previsión</strong> — momento de contratación, factores y comparativa de gestión.</li>
+    </ul>
+
+    <h3>Tipo de prompts ejecutados</h3>
+    <p>
+      El piloto ha lanzado <strong>300 prompts neutrales y semibrandeados</strong> que reflejan cómo realmente buscan las dos personas dentro del momento de evaluación. Son preguntas reales, no plantillas genéricas. Algunos ejemplos:
+    </p>
+    <ul class="clean">
+      <li><em>«¿Qué seguro de coche me conviene si busco equilibrio entre precio y cobertura?»</em></li>
+      <li><em>«¿Qué cubre normalmente un seguro de hogar y en qué debería fijarme antes de contratar?»</em></li>
+      <li><em>«¿Cómo comparar seguros de coche sin fijarme solo en el precio?»</em></li>
+      <li><em>«¿Qué valor aporta una aseguradora consolidada frente a una opción más barata y digital?»</em></li>
+      <li><em>«¿Cuándo tiene sentido contratar un seguro de vida y qué factores debería revisar?»</em></li>
+      <li><em>«Si tengo mascotas y niños pequeños, ¿qué coberturas extra debería mirar?»</em></li>
+    </ul>
+
+    <div class="callout">
+      <span class="callout-title">Diseño de prompt</span>
+      <p>
+        Los prompts no piden "háblame de Zurich". Replican la pregunta orgánica que hace una persona real cuando evalúa contratar un seguro. La marca solo aparece cuando el motor decide mencionarla. Eso es lo que se mide.
+      </p>
+    </div>
+
+    <h3>Lo que sí se puede concluir hoy</h3>
+    <ul class="clean">
+      <li>Una <strong>foto direccional</strong> de la cuota de voz de Zurich frente a competidores en awareness.</li>
+      <li>Una primera lectura del <strong>sentiment</strong> agregado y por marca.</li>
+      <li>El <strong>mix de citaciones</strong> que sostiene el relato (owned vs editorial vs third-party).</li>
+      <li>Los <strong>atributos espontáneos</strong> que Gemini asocia a Zurich.</li>
+    </ul>
+
+    <h3>Lo que <em>todavía no</em> se puede concluir</h3>
+    <ul class="clean">
+      <li>Variabilidad por motor (este piloto solo cubre Gemini; ChatGPT, Claude y Perplexity tienen comportamientos distintos).</li>
+      <li>Lectura por <strong>fase del funnel</strong> (sólo se ha cubierto Awareness; falta Consideration y Decision).</li>
+      <li>Diferencias por <strong>persona</strong> más allá de las dos del piloto.</li>
+      <li>Profundidad por <strong>línea de producto</strong>: coche y hogar tienen suficiente volumen para ser direccionales; vida está infrarrepresentado.</li>
+      <li><strong>Velocidad de mejora competitiva</strong> (requiere serie temporal).</li>
+      <li><strong>Drivers de recomendación</strong>: por qué la IA recomienda Zurich cuando lo hace.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     02 · METODOLOGÍA
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">02 · Metodología</span>
+    <h1 class="section-title">No es un estudio de visibilidad. Es una <em>medición de relato</em>.</h1>
+    <p class="section-lead">
+      La diferencia entre un dashboard de SEO clásico y una auditoría GEO está en qué se mide y cómo se mide. Aquí va el método.
+    </p>
+
+    <div class="two-col-asym">
+      <div>
+        <h3>Principio operativo</h3>
+        <p>
+          Los grandes motores generativos (Gemini, ChatGPT, Claude, Perplexity) se han convertido en una capa de mediación entre la marca y el cliente potencial. Cuando alguien pregunta "qué seguro me conviene", el motor sintetiza una respuesta a partir de cientos de fuentes, asigna importancia a algunas marcas y omite otras. Esa síntesis es la nueva narrativa del mercado. GEO la mide.
+        </p>
+      </div>
+      <div>
+        <h3>Cuatro pilares metodológicos</h3>
+        <ul class="clean">
+          <li><strong>Prompts neutrales reales.</strong> Las preguntas que ejecutamos son las que haría una persona evaluando una decisión de compra. No usamos prompts brandeados ni plantillas genéricas.</li>
+          <li><strong>Observación espontánea.</strong> Medimos qué marcas emergen sin pedirlas. Las menciones espontáneas son el equivalente generativo del top-of-mind.</li>
+          <li><strong>Lectura multidimensional.</strong> Cada respuesta se descompone en menciones, atributos asociados, fuentes citadas, posición y tono.</li>
+          <li><strong>Benchmarking competitivo.</strong> No miramos a Zurich en abstracto. Lo medimos contra todas las marcas que el motor hace emerger en el mismo segmento.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      "El SEO clásico mide qué links te trae Google. GEO mide qué te diría un asistente de IA cuando tu cliente le pregunta antes de llamarte."
+      <span class="pullquote-attr">— Marco metodológico Morillas × 498A</span>
+    </div>
+
+    <h3>El pipeline analítico, simplificado</h3>
+    <ol style="counter-reset:steps; list-style:none; padding-left:0; max-width:680px;">
+      <li style="counter-increment:steps; padding:18px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr; gap:24px;">
+        <span style="font-family:var(--mono); color:var(--accent); font-size:13px;">01</span>
+        <div>
+          <strong>Diseño de prompts.</strong>
+          <p style="font-size:14px; color:var(--ink-soft); margin-top:4px;">Construimos el set de preguntas a partir de personas, fases del funnel, líneas de producto y momentos de decisión. Validación humana caso a caso.</p>
+        </div>
+      </li>
+      <li style="counter-increment:steps; padding:18px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr; gap:24px;">
+        <span style="font-family:var(--mono); color:var(--accent); font-size:13px;">02</span>
+        <div>
+          <strong>Ejecución multi-engine.</strong>
+          <p style="font-size:14px; color:var(--ink-soft); margin-top:4px;">Cada prompt se ejecuta contra los motores objetivo (en este piloto: Gemini; en la auditoría completa: Gemini, ChatGPT, Claude y Perplexity), múltiples ejecuciones por persona.</p>
+        </div>
+      </li>
+      <li style="counter-increment:steps; padding:18px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr; gap:24px;">
+        <span style="font-family:var(--mono); color:var(--accent); font-size:13px;">03</span>
+        <div>
+          <strong>Detección de entidades.</strong>
+          <p style="font-size:14px; color:var(--ink-soft); margin-top:4px;">Cada respuesta se procesa para identificar marcas, productos y entidades mencionadas, su posición en el texto, su contexto y el sentimiento asociado.</p>
+        </div>
+      </li>
+      <li style="counter-increment:steps; padding:18px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr; gap:24px;">
+        <span style="font-family:var(--mono); color:var(--accent); font-size:13px;">04</span>
+        <div>
+          <strong>Atribución y fuentes.</strong>
+          <p style="font-size:14px; color:var(--ink-soft); margin-top:4px;">Identificamos qué fuentes (web propia, prensa, comparadores, foros, regulador) están sosteniendo cada afirmación. Esto define quién controla el relato.</p>
+        </div>
+      </li>
+      <li style="counter-increment:steps; padding:18px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr; gap:24px;">
+        <span style="font-family:var(--mono); color:var(--accent); font-size:13px;">05</span>
+        <div>
+          <strong>Agregación por dimensiones.</strong>
+          <p style="font-size:14px; color:var(--ink-soft); margin-top:4px;">Los datos se cruzan por persona, funnel, producto y atributo de marca, generando una matriz analítica que permite leer dónde gana y dónde pierde la marca.</p>
+        </div>
+      </li>
+      <li style="counter-increment:steps; padding:18px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr; gap:24px;">
+        <span style="font-family:var(--mono); color:var(--accent); font-size:13px;">06</span>
+        <div>
+          <strong>Lectura estratégica.</strong>
+          <p style="font-size:14px; color:var(--ink-soft); margin-top:4px;">Sobre los datos, Morillas construye el roadmap accionable: qué corregir, qué fortalecer, dónde están los quick wins, qué necesita inversión sostenida.</p>
+        </div>
+      </li>
+    </ol>
+
+    <h3>Por qué esto tiene base científica</h3>
+    <ul class="clean">
+      <li><strong>Reproducibilidad.</strong> Cada dato es trazable a un prompt, una respuesta, una mención y una fuente concreta.</li>
+      <li><strong>Neutralidad de diseño.</strong> Los prompts no fuerzan la aparición de la marca; medimos comportamiento espontáneo.</li>
+      <li><strong>Volumen estadístico.</strong> La auditoría completa trabaja con miles de respuestas, no decenas.</li>
+      <li><strong>Trazabilidad temporal.</strong> Cada lectura genera una serie histórica que permite medir velocidad de cambio.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     03 · KPIs
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">03 · KPIs observados</span>
+    <h1 class="section-title">Los indicadores que sostienen la lectura.</h1>
+    <p class="section-lead">
+      Cada KPI traduce una pregunta de negocio. No es métrica por la métrica. Es: ¿qué decisión te permite tomar?
+    </p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th style="width:34%">KPI</th>
+          <th>Qué responde</th>
+          <th class="num" style="width:20%">Valor piloto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="brand-name">Share of Voice</td>
+          <td>De cada 100 menciones de marca en este segmento, ¿cuántas son de Zurich?</td>
+          <td class="num">36,30%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Share of Branded Voice</td>
+          <td>Lo mismo, pero contando solo respuestas en las que aparece <em>alguna</em> marca.</td>
+          <td class="num">36,30%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Share of Recommendation</td>
+          <td>Cuando la IA recomienda una marca explícitamente, ¿qué porcentaje recae en Zurich?</td>
+          <td class="num">81,82%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Sentiment positivo agregado</td>
+          <td>De todas las menciones del segmento, ¿qué porcentaje tiene tono positivo?</td>
+          <td class="num">13,9%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Sentiment positivo · Zurich</td>
+          <td>De las menciones que recibe Zurich, ¿qué porcentaje son positivas?</td>
+          <td class="num">52%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Citations · Owned</td>
+          <td>¿Qué porcentaje de las fuentes que cita la IA son de la propia marca?</td>
+          <td class="num">32,2%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Citations · Editorial</td>
+          <td>¿Y cuántas son medios de comunicación o prensa?</td>
+          <td class="num">1,1%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Citations · Third Party</td>
+          <td>¿Y cuántas son fuentes externas (comparadores, foros, partners, organismos)?</td>
+          <td class="num">66,7%</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Atributos asociados</td>
+          <td>¿Qué dimensiones cualitativas conecta la IA con Zurich? (cobertura, atención, precio…)</td>
+          <td class="num">22 atributos</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Avg. Mention Position</td>
+          <td>Cuando aparece, ¿en qué orden lo menciona la IA dentro de la respuesta?</td>
+          <td class="num">2,97</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Coverage</td>
+          <td>De todas las respuestas, ¿en qué porcentaje aparece Zurich?</td>
+          <td class="num">36,3%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:13px; color:var(--ink-muted); font-style:italic;">
+      Listado parcial. La auditoría completa monitoriza más de 30 KPIs cruzados por persona, funnel, producto y motor.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     04 · HALLAZGOS
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">04 · Primeros hallazgos</span>
+    <h1 class="section-title">Lo que los datos están <em>ya</em> diciendo.</h1>
+    <p class="section-lead">
+      Cuatro lecturas estratégicas que se desprenden del piloto. No son conclusiones cerradas; son hipótesis sólidas que la auditoría completa convertirá en plan de acción.
+    </p>
+
+    <h2 style="margin-top:24px;">01 · Zurich entra en la conversación generativa.</h2>
+    <p>
+      Con un Share of Voice del <strong>36,30%</strong>, Zurich aparece de forma espontánea en aproximadamente uno de cada tres prompts neutrales sobre seguros. En un mercado donde compiten Mapfre, AXA, Allianz, Mutua, Generali, Línea Directa, Pelayo y un largo etcétera, ese nivel de presencia es ya un activo digital significativo. La marca no está siendo invisible para la nueva capa de mediación.
+    </p>
+
+    <div class="callout">
+      <span class="callout-title">Implicación de negocio</span>
+      <p>El esfuerzo histórico de marca, contenidos y autoridad de dominio está siendo "leído" por los motores. Existe una base sobre la que construir, no estamos partiendo de cero.</p>
+    </div>
+
+    <h2>02 · Cuando aparece, suele convertirse en recomendación.</h2>
+    <p>
+      El <strong>81,82% del Share of Recommendation</strong> es probablemente la cifra más interesante del piloto. Significa que cuando la IA pasa de simplemente <em>mencionar</em> aseguradoras a <em>recomendar</em> una explícitamente, Zurich se lleva más de cuatro de cada cinco recomendaciones identificadas. La marca tiene una capacidad de conversión de mención a preferencia muy fuerte.
+    </p>
+
+    <div class="callout">
+      <span class="callout-title">Implicación de negocio</span>
+      <p>Los activos de credibilidad y reputación están funcionando. La auditoría completa debe identificar qué señales concretas (tamaño, antigüedad, presencia internacional, presencia en comparadores) sostienen esa preferencia, para poder amplificarlas.</p>
+    </div>
+
+    <h2>03 · El relato lo construyen mayoritariamente terceros.</h2>
+    <p>
+      Solo el <strong>32,2% de las citaciones</strong> que la IA usa para construir su respuesta provienen de fuentes propias de Zurich. El <strong>66,7%</strong> son fuentes third-party: comparadores, foros, partners, prescriptores, regulador. La prensa especializada apenas aporta un <strong>1,1%</strong>.
+    </p>
+
+    <div style="margin: 32px 0; padding: 28px 32px; border: 1px solid var(--rule-strong); background: var(--paper);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
+        <div>
+          <div style="font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); font-weight: 600; margin-bottom: 8px;">Citations by Owner</div>
+          <div style="font-family: var(--serif); font-size: 56px; line-height: 1; color: var(--positive); font-weight: 500; letter-spacing: -0.02em;">32,2<span style="font-size: 28px; color: var(--ink-muted); font-weight: 300;">%</span></div>
+          <div style="font-family: var(--sans); font-size: 13px; color: var(--ink-muted); margin-top: 8px;">Share of corporate-controlled sources within the current mix</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; min-width: 220px;">
+          <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 13px;">
+            <span style="width: 10px; height: 10px; background: var(--positive); border-radius: 50%;"></span>
+            <span style="flex: 1;">Your Brand</span>
+            <span style="font-family: var(--mono); font-weight: 600;">32,2%</span>
+            <span style="font-family: var(--mono); color: var(--ink-muted); width: 36px; text-align: right;">143</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 13px;">
+            <span style="width: 10px; height: 10px; background: var(--highlight); border-radius: 50%;"></span>
+            <span style="flex: 1;">Editorial</span>
+            <span style="font-family: var(--mono); font-weight: 600;">1,1%</span>
+            <span style="font-family: var(--mono); color: var(--ink-muted); width: 36px; text-align: right;">5</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 13px;">
+            <span style="width: 10px; height: 10px; background: var(--ink-faint); border-radius: 50%;"></span>
+            <span style="flex: 1;">Third Party</span>
+            <span style="font-family: var(--mono); font-weight: 600;">66,7%</span>
+            <span style="font-family: var(--mono); color: var(--ink-muted); width: 36px; text-align: right;">296</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; height: 14px; border-radius: 0; overflow: hidden;">
+        <div style="width: 32.2%; background: var(--positive);"></div>
+        <div style="width: 1.1%; background: var(--highlight);"></div>
+        <div style="width: 66.7%; background: var(--ink-faint);"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-top: 8px; font-family: var(--mono); font-size: 10px; color: var(--ink-faint);">
+        <span>0</span><span>444 citaciones totales</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-title">Implicación de negocio</span>
+      <p>Hay margen real para ganar control de relato. Cada percentil que se gana en owned reduce dependencia narrativa de comparadores y prescriptores que también sostienen a la competencia. La auditoría completa identifica las páginas, contenidos y formatos que la IA está privilegiando hoy.</p>
+    </div>
+
+    <h2>04 · El sentiment positivo es el flanco a fortalecer.</h2>
+    <p>
+      Zurich obtiene <strong>52% de menciones positivas</strong>. Es un dato razonable, pero queda por debajo de los principales competidores en el segmento.
+    </p>
+
+    <div class="bar-row">
+      <span class="bar-label">Mapfre</span>
+      <span class="bar-track"><span class="bar-fill" style="width:57%"></span></span>
+      <span class="bar-value">57%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Mutua Madrileña</span>
+      <span class="bar-track"><span class="bar-fill" style="width:56%"></span></span>
+      <span class="bar-value">56%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">AXA</span>
+      <span class="bar-track"><span class="bar-fill" style="width:56%"></span></span>
+      <span class="bar-value">56%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Allianz</span>
+      <span class="bar-track"><span class="bar-fill" style="width:54%"></span></span>
+      <span class="bar-value">54%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Generali</span>
+      <span class="bar-track"><span class="bar-fill" style="width:54%"></span></span>
+      <span class="bar-value">54%</span>
+    </div>
+    <div class="bar-row" style="background:var(--accent-bg);">
+      <span class="bar-label" style="color:var(--accent); font-weight:600;">Zurich</span>
+      <span class="bar-track"><span class="bar-fill" style="width:52%; background:var(--accent);"></span></span>
+      <span class="bar-value" style="color:var(--accent); font-weight:600;">52%</span>
+    </div>
+
+    <p style="margin-top:32px;">
+      La distribución agregada del segmento muestra una conversación dominada por el tono neutro. La IA describe más que opina, lo cual abre dos lecturas: hay espacio para construir tono positivo, pero también es el motivo por el que la diferencia entre marcas es estrecha.
+    </p>
+
+    <div class="sentiment-legend">
+      <span class="pos">Positivo · 14%</span>
+      <span class="neu">Neutral · 81%</span>
+      <span class="neg">Negativo · 5%</span>
+    </div>
+    <div class="sentiment-bar">
+      <div class="sentiment-positive" style="width:14%">14%</div>
+      <div class="sentiment-neutral" style="width:81%">81%</div>
+      <div class="sentiment-negative" style="width:5%">5%</div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-title">Implicación de negocio</span>
+      <p>Sentiment es la palanca con más recorrido. La auditoría completa identifica los contextos, atributos y prompts donde Zurich pierde tono positivo frente a Mapfre y Mutua, y construye un plan de mejora con priorización por impacto y velocidad.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     05 · LECTURA COMPETITIVA
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">05 · Lectura competitiva</span>
+    <h1 class="section-title">Cómo se reparte la conversación.</h1>
+    <p class="section-lead">
+      Ranking real de marcas detectadas en la lectura piloto. Zurich lidera el segmento en awareness, pero el diferencial frente a los grandes generalistas no es definitivo.
+    </p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th style="width:60px;">#</th>
+          <th>Marca</th>
+          <th class="num">Menciones</th>
+          <th class="num">% sobre total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">01</td><td class="brand-name own">Zurich</td><td class="num">231</td><td class="num">37,7%</td></tr>
+        <tr><td class="num">02</td><td class="brand-name">Mapfre</td><td class="num">53</td><td class="num">8,7%</td></tr>
+        <tr><td class="num">03</td><td class="brand-name">Mutua Madrileña</td><td class="num">35</td><td class="num">5,7%</td></tr>
+        <tr><td class="num">04</td><td class="brand-name">AXA</td><td class="num">31</td><td class="num">5,1%</td></tr>
+        <tr><td class="num">05</td><td class="brand-name">Allianz</td><td class="num">30</td><td class="num">4,9%</td></tr>
+        <tr><td class="num">06</td><td class="brand-name">Generali</td><td class="num">17</td><td class="num">2,8%</td></tr>
+        <tr><td class="num">07</td><td class="brand-name">Línea Directa</td><td class="num">10</td><td class="num">1,6%</td></tr>
+        <tr><td class="num">08</td><td class="brand-name">Pelayo</td><td class="num">10</td><td class="num">1,6%</td></tr>
+        <tr><td class="num">09</td><td class="brand-name own">Zurich Klinc</td><td class="num">9</td><td class="num">1,5%</td></tr>
+        <tr><td class="num">10</td><td class="brand-name">Sanitas</td><td class="num">6</td><td class="num">1,0%</td></tr>
+        <tr><td class="num">11</td><td class="brand-name">Santalucía</td><td class="num">4</td><td class="num">0,7%</td></tr>
+        <tr><td class="num">12</td><td class="brand-name">Reale Seguros</td><td class="num">4</td><td class="num">0,7%</td></tr>
+        <tr><td class="num">13</td><td class="brand-name">Adeslas</td><td class="num">3</td><td class="num">0,5%</td></tr>
+        <tr><td class="num">14</td><td class="brand-name own">Zurich One</td><td class="num">3</td><td class="num">0,5%</td></tr>
+        <tr><td class="num">15</td><td class="brand-name">Verti</td><td class="num">3</td><td class="num">0,5%</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:13px; color:var(--ink-muted); font-style:italic;">
+      Top 15. Hay 25 marcas con menciones detectables en la lectura piloto. La auditoría completa amplía la cobertura competitiva a +50 marcas con segmentación por producto.
+    </p>
+
+    <h3>Zurich vs media del mercado · Business Impact por atributo</h3>
+    <p>
+      El <strong>Business Impact Score (BIS)</strong> es una métrica composite que combina visibilidad, posición en la respuesta, sentiment y capacidad de recomendación, en escala 0–100. La comparativa frente a la media del mercado revela en qué dimensiones Zurich está ganando autoridad real frente al conjunto de competidores detectados.
+    </p>
+
+    <div class="zvm-block">
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">01</span>Solidez Financiera</div>
+          <div class="zvm-attr-meta positive">Positive · 8 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:87.5%"></div></div><span class="zvm-bar-val">87,5</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:46.5%"></div></div><span class="zvm-bar-val muted">46,5</span></div>
+        </div>
+        <div class="zvm-gap">+41,0</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">02</span>Tecnología</div>
+          <div class="zvm-attr-meta positive">Positive · 5 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:86.2%"></div></div><span class="zvm-bar-val">86,2</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:42.3%"></div></div><span class="zvm-bar-val muted">42,3</span></div>
+        </div>
+        <div class="zvm-gap">+43,9</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">03</span>Automation</div>
+          <div class="zvm-attr-meta slightly">Slightly + · 2 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:86%"></div></div><span class="zvm-bar-val">86,0</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:31%"></div></div><span class="zvm-bar-val muted">31,0</span></div>
+        </div>
+        <div class="zvm-gap">+55,0</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">04</span>Mobile-App</div>
+          <div class="zvm-attr-meta">Neutral · 2 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:85%"></div></div><span class="zvm-bar-val">85,0</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:56.2%"></div></div><span class="zvm-bar-val muted">56,2</span></div>
+        </div>
+        <div class="zvm-gap">+28,8</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">05</span>Red de Talleres</div>
+          <div class="zvm-attr-meta">Neutral · 1 referencia</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:85%"></div></div><span class="zvm-bar-val">85,0</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:42.6%"></div></div><span class="zvm-bar-val muted">42,6</span></div>
+        </div>
+        <div class="zvm-gap">+42,4</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">06</span>Personalización</div>
+          <div class="zvm-attr-meta slightly">Slightly + · 12 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:81.9%"></div></div><span class="zvm-bar-val">81,9</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:41.8%"></div></div><span class="zvm-bar-val muted">41,8</span></div>
+        </div>
+        <div class="zvm-gap">+40,1</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">07</span>Transparencia</div>
+          <div class="zvm-attr-meta slightly">Slightly + · 29 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:80.7%"></div></div><span class="zvm-bar-val">80,7</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:47.2%"></div></div><span class="zvm-bar-val muted">47,2</span></div>
+        </div>
+        <div class="zvm-gap">+33,5</div>
+      </div>
+
+      <div class="zvm-row">
+        <div>
+          <div class="zvm-attr-name"><span class="zvm-rank">08</span>Price</div>
+          <div class="zvm-attr-meta">Neutral · 33 referencias</div>
+        </div>
+        <div class="zvm-bars">
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag">Zurich</span><div class="zvm-bar-track"><div class="zvm-bar-fill zurich" style="width:79.9%"></div></div><span class="zvm-bar-val">79,9</span></div>
+          <div class="zvm-bar-pair"><span class="zvm-bar-tag muted">Mercado</span><div class="zvm-bar-track"><div class="zvm-bar-fill market" style="width:38.1%"></div></div><span class="zvm-bar-val muted">38,1</span></div>
+        </div>
+        <div class="zvm-gap">+41,8</div>
+      </div>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--ink-muted); font-style:italic;">
+      8 atributos top mostrados. La auditoría completa cubre los 22 atributos detectados, con segmentación adicional por persona, funnel y línea de producto.
+    </p>
+
+    <div class="callout">
+      <span class="callout-title">Lectura estratégica · El gap es la historia</span>
+      <p>
+        Zurich <strong>supera ampliamente la media del mercado en los 8 atributos clave medidos</strong>, con brechas de entre <strong>+28,8 y +55,0 puntos</strong>. Esto no es un dato de "necesita mejorar"; es evidencia de <strong>autoridad ya ganada</strong> frente al conjunto competitivo en dimensiones críticas (solidez financiera, tecnología, automation, atención digital).
+      </p>
+      <p style="margin-top:12px;">
+        La oportunidad estratégica no es construir reputación desde cero, sino <strong>amplificar y defender</strong> el liderazgo que la IA ya está reconociendo. La auditoría completa identifica qué atributos hay que llevar a más personas, productos y motores, y qué fuentes activar para sostener cada uno.
+      </p>
+    </div>
+
+    <h3 style="margin-top:48px;">Sentiment normalizado por atributo · Engine Gemini</h3>
+    <p>
+      Vista cualitativa complementaria. Score de sentiment asociado a cada atributo en una escala normalizada (-1 a +1), agregada sobre las menciones espontáneas de Zurich en respuestas de Gemini.
+    </p>
+
+    <div class="bar-row"><span class="bar-label">Services</span><span class="bar-track"><span class="bar-fill" style="width:94%"></span></span><span class="bar-value">+0,47</span></div>
+    <div class="bar-row"><span class="bar-label">Flexibilidad</span><span class="bar-track"><span class="bar-fill" style="width:92%"></span></span><span class="bar-value">+0,46</span></div>
+    <div class="bar-row"><span class="bar-label">Atención al Cliente</span><span class="bar-track"><span class="bar-fill" style="width:80%"></span></span><span class="bar-value">+0,40</span></div>
+    <div class="bar-row"><span class="bar-label">Personalización</span><span class="bar-track"><span class="bar-fill" style="width:76%"></span></span><span class="bar-value">+0,38</span></div>
+    <div class="bar-row"><span class="bar-label">Transparencia</span><span class="bar-track"><span class="bar-fill" style="width:66%"></span></span><span class="bar-value">+0,33</span></div>
+    <div class="bar-row"><span class="bar-label">Plataformas Online</span><span class="bar-track"><span class="bar-fill" style="width:60%"></span></span><span class="bar-value">+0,30</span></div>
+    <div class="bar-row"><span class="bar-label">Cobertura</span><span class="bar-track"><span class="bar-fill" style="width:50%"></span></span><span class="bar-value">+0,25</span></div>
+    <div class="bar-row"><span class="bar-label">Precio</span><span class="bar-track"><span class="bar-fill" style="width:48%"></span></span><span class="bar-value">+0,24</span></div>
+
+    <p style="margin-top:24px; font-size:13px; color:var(--ink-muted); font-style:italic;">
+      8 atributos visibles de un total de 22 detectados. Score medio agregado: <strong>+0,34</strong>. Total menciones que sostienen estos atributos: 653.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     06 · EJEMPLOS REALES
+     ============================================================ -->
+<section class="page">
+  <div class="page-wide">
+    <span class="section-num">06 · Ejemplos reales</span>
+    <h1 class="section-title">Cómo "lee" la IA a Zurich. Verbatim.</h1>
+    <p class="section-lead">
+      Tres ejemplos extraídos del piloto. El primero es una respuesta completa de Gemini a una pregunta brandeada. Los otros dos, fragmentos de respuestas a prompts neutrales donde Zurich emerge espontáneamente.
+    </p>
+
+    <!-- Verbatim 1: branded prompt, full response -->
+    <div class="verbatim">
+      <div class="verbatim-header">
+        <div class="verbatim-meta">PROMPT TIPO · <strong>BRANDED</strong> · PERSONA: Familia que busca seguro de hogar</div>
+        <div class="verbatim-meta">ENGINE · <strong>Gemini 2.5 Flash Lite</strong></div>
+      </div>
+
+      <span class="verbatim-prompt-label">Prompt</span>
+      <p class="verbatim-prompt">«¿Qué preguntas debería hacer a un agente de Zurich antes de firmar el seguro de coche para estar seguro de que no hay letra pequeña?»</p>
+
+      <span class="verbatim-response-label">Respuesta · extracto editado por longitud</span>
+      <div class="verbatim-response">
+        <p>Para asegurarte de que no hay "letra pequeña" y que entiendes completamente tu seguro de coche de <span class="zurich-mention">Zurich</span> antes de firmar, es fundamental hacer preguntas específicas y detalladas. Aquí te presento una lista de preguntas clave organizadas por áreas, diseñadas para brindarte claridad y tranquilidad…</p>
+        <p><strong>Coberturas y exclusiones.</strong> ¿Qué eventos específicos cubre la póliza en caso de daño a mi vehículo? ¿Existen limitaciones para ciertos tipos de daños? ¿Hasta qué importe <span class="zurich-mention">Zurich</span> cubre los daños a terceros?</p>
+        <p><strong>Proceso de reclamación.</strong> ¿Cuál es el procedimiento exacto para reportar un siniestro? ¿Necesito contactar directamente a <span class="zurich-mention">Zurich</span> o hay talleres concertados a los que debo acudir? ¿Cuánto tiempo suele tardar <span class="zurich-mention">Zurich</span> en evaluar un siniestro?</p>
+        <p><strong>Talleres concertados.</strong> ¿<span class="zurich-mention">Zurich</span> tiene talleres concertados? ¿Estoy obligado a usar uno de ellos? Si utilizo un taller no concertado, ¿<span class="zurich-mention">Zurich</span> cubre los costes al mismo nivel?</p>
+        <p>Una conversación detallada con tu agente de <span class="zurich-mention">Zurich</span> te dará la seguridad que buscas antes de firmar.</p>
+      </div>
+
+      <div class="verbatim-footer">
+        <strong>Lectura:</strong> Cuando la pregunta menciona Zurich directamente, la IA produce una respuesta extensa y bien estructurada, mencionando la marca <strong>8 veces</strong> en una sola respuesta. La narrativa es razonablemente neutra-positiva, con buena estructura comercial.
+      </div>
+    </div>
+
+    <!-- Verbatim 2: neutral prompt, spontaneous mention -->
+    <div class="verbatim">
+      <div class="verbatim-header">
+        <div class="verbatim-meta">PROMPT TIPO · <strong>NEUTRAL</strong> · PERSONA: Conductor que compara seguro de coche</div>
+        <div class="verbatim-meta">ENGINE · <strong>Gemini 2.5 Flash Lite</strong></div>
+      </div>
+
+      <span class="verbatim-prompt-label">Prompt</span>
+      <p class="verbatim-prompt">«¿Qué valor aporta una aseguradora consolidada frente a una opción más barata y digital?»</p>
+
+      <span class="verbatim-response-label">Fragmento donde emerge Zurich espontáneamente</span>
+      <div class="verbatim-response">
+        <p>Las aseguradoras consolidadas como <span class="zurich-mention">Zurich</span>, a pesar de tener primas potencialmente más altas que opciones más baratas, ofrecen varias ventajas significativas que justifican su elección, especialmente para quienes valoran la <strong>transparencia</strong>, la <strong>relación precio-cobertura</strong> y la <strong>rapidez en la resolución</strong>.</p>
+      </div>
+
+      <div class="verbatim-footer">
+        <strong>Lectura:</strong> El motor escoge a Zurich como ejemplo prototípico de "aseguradora consolidada". La marca emerge como representante de categoría — un activo narrativo extremadamente valioso. Asocia espontáneamente <em>transparencia</em>, <em>relación precio-cobertura</em> y <em>rapidez</em>.
+      </div>
+    </div>
+
+    <!-- Verbatim 3: neutral comparison context -->
+    <div class="verbatim">
+      <div class="verbatim-header">
+        <div class="verbatim-meta">PROMPT TIPO · <strong>NEUTRAL CON COMPARATIVA</strong></div>
+        <div class="verbatim-meta">ENGINE · <strong>Gemini 2.5 Flash Lite</strong></div>
+      </div>
+
+      <span class="verbatim-prompt-label">Prompt</span>
+      <p class="verbatim-prompt">«Si bien algunas aseguradoras grandes pueden ofrecer un coche de sustitución como parte de sus pólizas estándar, ¿es eso habitual?»</p>
+
+      <span class="verbatim-response-label">Fragmento donde emerge Zurich</span>
+      <div class="verbatim-response">
+        <p>Si bien algunas aseguradoras grandes como <span class="zurich-mention">Zurich</span> pueden ofrecer un coche de sustitución como parte de sus pólizas estándar, <strong>a menudo es una cobertura que se puede contratar como una garantía opcional</strong> o que se incluye en modalidades de seguro más completas.</p>
+      </div>
+
+      <div class="verbatim-footer">
+        <strong>Lectura:</strong> Zurich aparece como referencia para describir el estándar del mercado en una cobertura específica. La marca está siendo usada por la IA como benchmark de categoría, lo que refuerza su autoridad en el segmento auto.
+      </div>
+    </div>
+
+    <div class="callout honest">
+      <span class="callout-title">Sobre estos verbatims</span>
+      <p>
+        Los textos son transcripciones literales de respuestas reales del motor. Han sido editados solo por longitud y los énfasis (negritas, color) son nuestros para facilitar lectura. La auditoría completa entrega <strong>todos los verbatims</strong> ordenados por relevancia, sentiment y tipo de fuente, con anotación contextual.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     07 · QUÉ ENTREGA LA AUDITORÍA COMPLETA
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">07 · Auditoría completa</span>
+    <h1 class="section-title">Lo que este piloto <em>aún no</em> está midiendo.</h1>
+    <p class="section-lead">
+      Las conclusiones que un equipo directivo necesita para tomar decisiones — segmentación, priorización, roadmap — están en lo que la auditoría completa añade al piloto.
+    </p>
+
+    <div class="callout honest">
+      <span class="callout-title">Construcción del dataset definitivo</span>
+      <p>
+        El piloto ha trabajado con 300 respuestas. La auditoría completa construye un <strong>dataset propietario de varios miles de prompts diseñado específicamente para Zurich</strong>, con equilibrio controlado entre <strong>customer personas</strong>, <strong>fases del funnel</strong> y <strong>líneas de producto</strong>.
+      </p>
+      <p style="margin-top:12px;">
+        Cada paso del pipeline — generación, validación, ejecución multi-engine, detección de entidades, atribución de fuentes — incorpora tecnología propia (GEOradar) y supervisión consultiva (Morillas + 498 Advance). Esto convierte una lectura direccional en una <strong>medición estadísticamente robusta, defendible internamente y comparable trimestre a trimestre</strong>.
+      </p>
+    </div>
+
+    <h2 style="margin-top:48px;">Mapeo y priorización de fuentes: el corazón estratégico.</h2>
+    <p>
+      La métrica de Share of Voice dice <em>cuánto</em> aparece Zurich. La de Sentiment dice <em>cómo</em>. Pero la pregunta de negocio que decide el plan es otra: <strong>¿quién está sosteniendo cada parte del relato?</strong>
+    </p>
+    <p>
+      La auditoría completa identifica, para cada tema y cada motor, las <strong>fuentes que la IA está privilegiando</strong> — qué páginas web, qué medios, qué comparadores, qué foros, qué partners, qué documentación regulatoria — y las cruza con quién controla cada una. De ahí sale la matriz que define la estrategia óptima de posicionamiento.
+    </p>
+
+    <table class="data" style="margin-top:24px;">
+      <thead>
+        <tr>
+          <th style="width:30%">Tipo de fuente</th>
+          <th>Decisión estratégica que habilita</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="brand-name own" style="white-space:nowrap;">Owned</td>
+          <td>Páginas que la IA cita de zurich.es y dominios propios. <strong>Acción:</strong> identificar las que ya posicionan, replicar el patrón en temas donde Zurich no aparece, corregir los gaps.</td>
+        </tr>
+        <tr>
+          <td class="brand-name" style="white-space:nowrap; color:var(--accent);">Earned · prensa y autoridad</td>
+          <td>Medios y autoridades que la IA toma como referencia. <strong>Acción:</strong> mapear con quién hay relación activa, identificar cuáles cita la competencia y Zurich no, diseñar plan de prensa especializada.</td>
+        </tr>
+        <tr>
+          <td class="brand-name" style="white-space:nowrap; color:var(--accent);">Influencer · comparadores y prescriptores</td>
+          <td>Comparadores (Rastreator, Acierto, Kelisto), foros y prescriptores. <strong>Acción:</strong> auditar ficha en cada uno, negociar partnerships donde haya leverage, generar contenido que sea citado.</td>
+        </tr>
+        <tr>
+          <td class="brand-name" style="white-space:nowrap; color:var(--accent);">Institutional · regulador y sector</td>
+          <td>DGSFP, Consorcio, asociaciones sectoriales. <strong>Acción:</strong> presencia en publicaciones e informes citados por la IA como autoridad.</td>
+        </tr>
+        <tr>
+          <td class="brand-name" style="white-space:nowrap; color:var(--accent);">Hostile o débil</td>
+          <td>Fuentes que sostienen narrativas negativas o que la IA prioriza pero Zurich no controla. <strong>Acción:</strong> contranarrativa con contenido propio, distribución dirigida.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="callout-title">Por qué este bloque cambia el plan</span>
+      <p>
+        Sin priorización de fuentes, el plan de acción es <em>publicar más</em>. Con priorización, el plan es <em>publicar lo correcto, en los soportes correctos, con la distribución correcta</em>. Es la diferencia entre intentar mover una métrica y diseñar la palanca exacta para moverla.
+      </p>
+    </div>
+
+    <h2 style="margin-top:48px;">Qué se lleva Zurich al cierre del estudio.</h2>
+    <ul class="clean">
+      <li><strong>Insights accionables.</strong> No descripciones del estado, sino hipótesis trabajadas: dónde Zurich está perdiendo, contra quién, en qué contexto, por qué.</li>
+      <li><strong>Plan de acción priorizado.</strong> Intervenciones concretas con horizonte temporal (0-90, 90-180, 180-365 días), área responsable sugerida, métrica de éxito e impacto esperado.</li>
+      <li><strong>Mapa de fuentes priorizadas.</strong> Estrategia óptima de posicionamiento para cada tema crítico, con qué owned content fortalecer, qué earned activar y qué partnerships negociar.</li>
+      <li><strong>Quick wins.</strong> Selección de 5–10 acciones de alto retorno y baja fricción ejecutables en los primeros 90 días.</li>
+      <li><strong>Dashboard de monitorización.</strong> Acceso al panel GEOradar configurado para Zurich, con alertas y re-lecturas trimestrales.</li>
+      <li><strong>Dataset descargable.</strong> Todos los prompts, respuestas, menciones y citaciones del estudio, trazables uno a uno.</li>
+    </ul>
+
+    <h3 style="margin-top:48px;">Capacidades adicionales del despliegue completo</h3>
+    <table class="data">
+      <thead>
+        <tr><th style="width:30%">Dimensión</th><th>Lo que aporta</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="brand-name">Cobertura multi-engine</td>
+          <td>Lectura paralela en Gemini, ChatGPT, Claude y Perplexity. Cada motor tiene biases y fuentes distintas. La estrategia GEO se diseña por motor, no en abstracto.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Análisis por customer persona</td>
+          <td>Lectura segmentada por arquetipo de cliente: cómo "ve" la IA a Zurich cuando pregunta una familia, un autónomo, un jubilado, una pyme, un comprador joven. Define dónde corregir narrativa.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Análisis por línea de producto</td>
+          <td>Coche, hogar, vida, salud, decesos, empresas, autónomos. Cada línea tiene un mapa competitivo y una narrativa propia. La estrategia es distinta para cada una.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Lectura por fase del funnel</td>
+          <td>Awareness, Consideration, Decision. Dónde Zurich gana atención frente a dónde la pierde para convertir. Permite intervenciones priorizadas por etapa.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Criterios de compra detectados</td>
+          <td>Qué dimensiones (precio, cobertura, servicio, digital, confianza, tamaño) están dominando la decisión en cada motor y persona. Nuevamente, distinto por segmento.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Velocidad de mejora competitiva</td>
+          <td>Comparativa serial: ¿qué competidores están ganando peso narrativo más rápido? ¿Dónde se está agrandando el gap?</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Drivers de recomendación</td>
+          <td>Cuando la IA recomienda Zurich, ¿qué argumentos usa? Cuando recomienda a otro, ¿qué le falta a Zurich? Permite construir contenidos quirúrgicos.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Roadmap accionable</td>
+          <td>Lista priorizada de intervenciones — owned content, distribución, prensa, partnerships, ficha técnica, datos estructurados — con impacto esperado y velocidad.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Quick wins identificados</td>
+          <td>Acciones de 0-90 días con alto retorno. Ej: contenidos donde competidores tienen ventaja arbitraria, fuentes propias mal indexadas por el motor, atributos infrarrepresentados.</td>
+        </tr>
+        <tr>
+          <td class="brand-name">Monitorización continua</td>
+          <td>Ciclos periódicos para medir el efecto de las acciones y reajustar el plan. GEO no es una foto: es una serie temporal.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pullquote">
+      "El valor del estudio completo no es saber dónde está Zurich hoy. Es saber qué hacer mañana, en qué orden, y con qué retorno esperado."
+      <span class="pullquote-attr">— Lectura estratégica</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     08 · ÍNDICE DEL ESTUDIO FINAL
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">08 · Índice del estudio final</span>
+    <h1 class="section-title">Estructura del entregable completo.</h1>
+    <p class="section-lead">
+      Lo que Zurich recibe al cierre de la auditoría. Cada capítulo se entrega con executive summary, lectura accionable y dataset descargable.
+    </p>
+
+    <ol class="toc">
+      <li>
+        <div>
+          <div class="toc-title">Marco metodológico y diseño del estudio</div>
+          <div class="toc-desc">Personas activadas, prompts validados, motores cubiertos, ventana temporal, cobertura competitiva.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Posición de Zurich en motores generativos</div>
+          <div class="toc-desc">Share of Voice, Share of Branded Voice, Share of Recommendation, Coverage. Lectura por motor.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Mapa competitivo</div>
+          <div class="toc-desc">Ranking detallado, cuotas, brechas y velocidades de cambio. Top 50 marcas del segmento por línea de producto.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Análisis por customer persona</div>
+          <div class="toc-desc">Lectura segmentada para cada arquetipo: cómo cambia la narrativa de Zurich según quién pregunta.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Análisis por línea de producto</div>
+          <div class="toc-desc">Coche, hogar, vida, salud, decesos, empresas, autónomos, productos digitales (Klinc). Mapa narrativo por cada uno.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Lectura por fase del funnel</div>
+          <div class="toc-desc">Awareness · Consideration · Decision. Dónde gana presencia y dónde la pierde para convertir.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Criterios de compra detectados</div>
+          <div class="toc-desc">Qué argumentos usa la IA para inclinar al usuario hacia una marca u otra. Atributos blandos vs duros.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Sentiment y narrativa</div>
+          <div class="toc-desc">Qué se dice de Zurich, en qué tono, en qué contexto, comparado con cada competidor relevante.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Análisis de citaciones y fuentes</div>
+          <div class="toc-desc">Mapa de quién está sosteniendo el relato. Identificación de fuentes a fortalecer, neutralizar o crear.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Drivers de recomendación</div>
+          <div class="toc-desc">Cuando la IA recomienda Zurich, por qué lo hace. Cuando no, qué le falta. Análisis cualitativo profundo.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Velocidad competitiva</div>
+          <div class="toc-desc">Comparativa serial: qué competidores están ganando peso narrativo más rápido. Alertas tempranas.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Roadmap accionable</div>
+          <div class="toc-desc">Plan priorizado de intervenciones por horizonte (0-90, 90-180, 180-365 días) con impacto esperado y métricas de éxito.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Quick wins</div>
+          <div class="toc-desc">Selección de acciones de alto retorno y baja fricción. Implementación inmediata.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="toc-title">Modelo de monitorización continua</div>
+          <div class="toc-desc">Cadencia, dashboards, alertas y ciclos de re-lectura para medir efecto y reajustar.</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     09 · POR QUÉ AHORA
+     ============================================================ -->
+<section class="page">
+  <div class="page-narrow">
+    <span class="section-num">09 · Ventana competitiva</span>
+    <h1 class="section-title">Por qué <em>ahora</em>.</h1>
+    <p class="section-lead">
+      No es una decisión que se pueda postergar 12 meses sin coste. La ventana para definir la narrativa canónica de Zurich en motores generativos se está estrechando.
+    </p>
+
+    <h2>01 · La conversación se está formando — ahora.</h2>
+    <p>
+      Los grandes motores generativos están consolidando el "discurso por defecto" de cada categoría. Cuando un usuario pregunta hoy "qué seguro me conviene", el asistente compone una respuesta a partir de patrones aprendidos. Esos patrones se solidifican: la primera narrativa que la IA aprende sobre una marca tiende a ser la que repite. <strong>Cuanto antes se intervenga, más fácil es modular esa narrativa.</strong>
+    </p>
+
+    <h2>02 · La competencia ya está empezando a optimizar para LLMs.</h2>
+    <p>
+      Aseguradoras como Mapfre, Mutua Madrileña y AXA están iniciando programas internos de presencia en motores generativos. Cada mes que pasa sin medir y actuar, la brecha narrativa puede ensancharse silenciosamente. El piloto demuestra que <strong>Zurich tiene hoy el liderazgo de Share of Voice en awareness</strong>: defenderlo cuesta menos que recuperarlo.
+    </p>
+
+    <h2>03 · Los ciclos de actualización de los modelos juegan a favor del que actúa.</h2>
+    <p>
+      Los LLMs se reentrenan periódicamente y ajustan sus fuentes de forma continua. Lo que se publica, posiciona y distribuye <strong>hoy</strong> moldea las respuestas que el motor dará dentro de dos o tres trimestres. Una intervención retrasada llega cuando el ciclo ya ha cristalizado.
+    </p>
+
+    <h2>04 · El coste de oportunidad es invisible — pero real.</h2>
+    <p>
+      A diferencia del SEO clásico, la pérdida de presencia en motores generativos no se ve en un dashboard de tráfico orgánico convencional. Cuando el usuario nunca llega a la web porque la IA ya le respondió sin Zurich, no hay clic perdido que medir. <strong>El daño es estructural y silencioso.</strong>
+    </p>
+
+    <div class="callout">
+      <span class="callout-title">Ventana operativa propuesta</span>
+      <p style="margin-bottom:8px;"><strong>T1 · 0–90 días:</strong> medir con profundidad, identificar quick wins, intervenir contenidos críticos y fuentes prioritarias.</p>
+      <p style="margin-bottom:8px;"><strong>T2–T3 · 90–270 días:</strong> ejecución del plan, re-medición trimestral, ajuste de palanca por motor y persona.</p>
+      <p><strong>T4 · 270–365 días:</strong> consolidación de la narrativa canónica de Zurich en los principales motores. Posición defendible y monitorizada.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     10 · CIERRE
+     ============================================================ -->
+<section class="page" style="padding-bottom:0;">
+  <div class="page-narrow">
+    <span class="section-num">10 · Siguiente paso</span>
+    <h1 class="section-title">Convertir esta lectura en una decisión.</h1>
+    <p class="section-lead">
+      Este piloto demuestra que existe una conversación medible y que Zurich tiene una posición sólida sobre la que construir. La auditoría completa convierte esa posición en plan.
+    </p>
+
+    <h3>Qué proponemos</h3>
+    <ul class="clean">
+      <li><strong>Auditoría GEO completa.</strong> 4 motores, todas las personas estratégicas de Zurich, funnel completo, todas las líneas de producto. Entregable: el estudio descrito en el índice anterior, con dataset, dashboards y roadmap.</li>
+      <li><strong>Sesión de presentación ejecutiva.</strong> Trabajo directo con el comité de marketing y digital de Zurich para validar lecturas y priorizar el roadmap.</li>
+      <li><strong>Modelo de monitorización trimestral.</strong> Re-lecturas programadas para medir el efecto de las acciones y reajustar.</li>
+    </ul>
+
+    <h3>Qué necesitamos para arrancar</h3>
+    <ul class="clean">
+      <li>Validación del perímetro: motores, personas, líneas de producto, ventana temporal.</li>
+      <li>Acceso a personas internas para construir prompts realistas.</li>
+      <li>Una primera reunión de calibración (60 min).</li>
+    </ul>
+  </div>
+
+  <div class="cta-block" style="margin-top:80px;">
+    <h2>Próxima conversación.</h2>
+    <p>
+      Estamos preparados para presentar este informe en sesión ejecutiva con el equipo de Zurich y, si hay encaje, articular la propuesta detallada de la auditoría completa. El piloto demuestra el método. La auditoría entrega la decisión.
+    </p>
+    <div class="cta-meta">
+      <strong>Contacto:</strong> Equipo Morillas · cuenta Zurich<br />
+      <strong>Consultoría especializada:</strong> 498 Advance<br />
+      <strong>Plataforma analítica:</strong> GEOradar<br />
+      <strong>Documento:</strong> ZUR-GEO-PREL-001 · v1.0 · 19.04.2026
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="doc-footer">
+  <div>
+    <strong>Morillas</strong> · Lectura preliminar GEO · Zurich Seguros<br />
+    Datos extraídos de auditoría GEO ejecutada el 18.04.2026 sobre Google Gemini 2.5 Flash Lite.
+  </div>
+  <div style="text-align:right;">
+    Confidencial · Documento de trabajo<br />
+    Consultoría: <strong>498 Advance</strong> · Plataforma analítica: <strong>GEOradar</strong>
+  </div>
+</footer>
+
+</body>
+</html>
