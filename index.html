@@ -822,9 +822,36 @@
     margin-right: 8px;
   }
 
+  /* ----------- Running footer (print + screen marca de agua) ----------- */
+  .page-watermark {
+    display: none;
+    position: fixed;
+    bottom: 8mm;
+    left: 16mm;
+    right: 16mm;
+    font-family: var(--mono);
+    font-size: 8.5pt;
+    letter-spacing: 0.04em;
+    color: #A8A496;
+    pointer-events: none;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.5px solid #E5DFD2;
+    padding-top: 4mm;
+  }
+
+  .page-watermark .left { font-weight: 500; }
+  .page-watermark .right { font-weight: 400; opacity: 0.85; }
+
+  @media screen {
+    .page-watermark { display: none; }
+  }
+
   /* ----------- Print ----------- */
   @media print {
-    @page { size: A4; margin: 18mm 16mm; }
+    @page { size: A4; margin: 18mm 16mm 22mm 16mm; }
     body { background: white; font-size: 11pt; }
     .page { min-height: auto; padding: 0 0 24mm 0; page-break-after: always; }
     .cover { min-height: auto; padding: 0 0 24mm; }
@@ -836,10 +863,18 @@
     .doc-footer { page-break-before: avoid; }
     h1.section-title { page-break-after: avoid; }
     h2 { page-break-after: avoid; }
+    .page-watermark { display: flex !important; }
   }
 </style>
 </head>
 <body>
+
+<!-- Marca de agua (solo en PDF impreso) -->
+<div class="page-watermark" aria-hidden="true">
+  <span class="left">Zurich · Lectura preliminar GEO · Confidencial</span>
+  <span class="right">Documento de trabajo · v1.8 · 19.04.2026</span>
+</div>
+
 
 <!-- ============================================================
      COVER
@@ -857,7 +892,7 @@
   </div>
 
   <div class="cover-center">
-    <span class="cover-eyebrow">Lectura preliminar · Generative Engine Optimization</span>
+    <span class="cover-eyebrow">Lectura preliminar · Documento de trabajo · No conclusivo</span>
     <h1 class="cover-title">
       Cómo se está hablando<br />
       de <em>Zurich</em> dentro<br />
@@ -1062,6 +1097,106 @@
           <li><strong>Benchmarking competitivo.</strong> No miramos a Zurich en abstracto. Lo medimos contra todas las marcas que el motor hace emerger en el mismo segmento.</li>
         </ul>
       </div>
+    </div>
+
+    <h3 style="margin-top:48px;">El ecosistema GEOradar</h3>
+    <p>
+      Cuatro capas integradas que conectan el espacio semántico de la marca con la conversación real en motores generativos y el ecosistema de contenidos que la sostiene.
+    </p>
+
+    <div style="background:var(--paper); border:1px solid var(--rule-strong); padding:28px 16px 20px; margin: 24px 0;">
+      <svg viewBox="0 0 740 360" width="100%" style="display:block; max-width:760px; margin: 0 auto; font-family: var(--sans);" aria-label="Diagrama del ecosistema GEOradar">
+        <!-- arrow markers -->
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#A8A496" />
+          </marker>
+          <marker id="arr-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1F3A5F" />
+          </marker>
+        </defs>
+
+        <!-- Layer labels (top) -->
+        <g font-size="9" fill="#A8A496" font-family="JetBrains Mono, SF Mono, monospace" letter-spacing="1.2">
+          <text x="85" y="38" text-anchor="middle">CAPA SEMÁNTICA</text>
+          <text x="285" y="38" text-anchor="middle">NÚCLEO ANALÍTICO</text>
+          <text x="485" y="38" text-anchor="middle">MOTORES GENERATIVOS</text>
+          <text x="660" y="38" text-anchor="middle">ECOSISTEMA DE CONTENIDOS</text>
+        </g>
+
+        <!-- Box 1: GEOAtlas -->
+        <rect x="20" y="55" width="130" height="135" rx="0" fill="#FAF8F3" stroke="#C8C0AC" stroke-width="1" />
+        <text x="85" y="82" text-anchor="middle" font-family="Fraunces, serif" font-size="17" font-weight="500" fill="#1F3A5F">GEOAtlas</text>
+        <line x1="38" y1="92" x2="132" y2="92" stroke="#E5DFD2" stroke-width="1" />
+        <text x="85" y="115" text-anchor="middle" font-size="11" fill="#1A1A1A" font-weight="600">Semantic Brand Space</text>
+        <text x="85" y="135" text-anchor="middle" font-size="10" fill="#6B6B6B">Customer personas</text>
+        <text x="85" y="151" text-anchor="middle" font-size="10" fill="#6B6B6B">Líneas de negocio</text>
+        <text x="85" y="167" text-anchor="middle" font-size="10" fill="#6B6B6B">Atributos · Funnel</text>
+        <text x="85" y="183" text-anchor="middle" font-size="10" fill="#6B6B6B">Knowledge DB</text>
+
+        <!-- Arrow GEOAtlas → GEOradar -->
+        <line x1="155" y1="122" x2="195" y2="122" stroke="#A8A496" stroke-width="1.4" marker-end="url(#arr)" />
+
+        <!-- Box 2: GEOradar (centerpiece) -->
+        <rect x="200" y="40" width="170" height="170" rx="0" fill="#1F3A5F" fill-opacity="0.04" stroke="#1F3A5F" stroke-width="1.6" />
+        <text x="285" y="72" text-anchor="middle" font-family="Fraunces, serif" font-size="22" font-weight="500" fill="#1F3A5F">GEOradar</text>
+        <line x1="225" y1="83" x2="345" y2="83" stroke="#1F3A5F" stroke-width="0.6" stroke-opacity="0.4" />
+        <text x="285" y="108" text-anchor="middle" font-size="11" fill="#1A1A1A" font-weight="600">GEO Deep Study</text>
+        <text x="285" y="128" text-anchor="middle" font-size="11" fill="#1A1A1A" font-weight="600">Action Plan</text>
+        <text x="285" y="148" text-anchor="middle" font-size="11" fill="#1A1A1A" font-weight="600">Dashboard</text>
+        <text x="285" y="178" text-anchor="middle" font-size="9" fill="#6B6B6B" font-style="italic">Pipeline propietario · CSIC × UAB</text>
+
+        <!-- Arrow GEOradar ↔ LLMs (bidirectional) -->
+        <line x1="375" y1="116" x2="415" y2="116" stroke="#1F3A5F" stroke-width="1.6" marker-end="url(#arr-blue)" />
+        <line x1="415" y1="128" x2="375" y2="128" stroke="#1F3A5F" stroke-width="1.6" marker-end="url(#arr-blue)" />
+
+        <!-- Box 3: LLMs -->
+        <rect x="420" y="55" width="130" height="135" rx="0" fill="#FAF8F3" stroke="#C8C0AC" stroke-width="1" />
+        <text x="485" y="82" text-anchor="middle" font-family="Fraunces, serif" font-size="17" font-weight="500" fill="#1F3A5F">LLMs</text>
+        <line x1="438" y1="92" x2="532" y2="92" stroke="#E5DFD2" stroke-width="1" />
+        <text x="485" y="115" text-anchor="middle" font-size="11" fill="#1A1A1A" font-weight="600">Gemini · ChatGPT</text>
+        <text x="485" y="133" text-anchor="middle" font-size="11" fill="#1A1A1A" font-weight="600">Claude · Perplexity</text>
+        <text x="485" y="158" text-anchor="middle" font-size="10" fill="#6B6B6B">Capa de mediación</text>
+        <text x="485" y="174" text-anchor="middle" font-size="10" fill="#6B6B6B">entre marca y cliente</text>
+
+        <!-- Arrow LLMs ↔ Web (bidirectional) -->
+        <line x1="555" y1="116" x2="595" y2="116" stroke="#A8A496" stroke-width="1.4" marker-end="url(#arr)" />
+        <line x1="595" y1="128" x2="555" y2="128" stroke="#A8A496" stroke-width="1.4" marker-end="url(#arr)" />
+
+        <!-- Box 4: WEB ecosystem -->
+        <rect x="600" y="55" width="120" height="135" rx="0" fill="#FAF8F3" stroke="#C8C0AC" stroke-width="1" />
+        <text x="660" y="82" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-weight="500" fill="#1F3A5F">Web &amp; Agentic</text>
+        <line x1="618" y1="92" x2="702" y2="92" stroke="#E5DFD2" stroke-width="1" />
+        <text x="660" y="115" text-anchor="middle" font-size="10" fill="#1A1A1A" font-weight="600">Owned</text>
+        <text x="660" y="133" text-anchor="middle" font-size="10" fill="#1A1A1A" font-weight="600">Editorial · Earned</text>
+        <text x="660" y="151" text-anchor="middle" font-size="10" fill="#1A1A1A" font-weight="600">Third-party</text>
+        <text x="660" y="173" text-anchor="middle" font-size="10" fill="#6B6B6B" font-style="italic">Content farms · Agentic</text>
+
+        <!-- Vertical lines from sub-tools to GEOradar -->
+        <line x1="245" y1="225" x2="245" y2="210" stroke="#A8A496" stroke-width="1" />
+        <line x1="325" y1="225" x2="325" y2="210" stroke="#A8A496" stroke-width="1" />
+
+        <!-- Sub-tool 1: GEOdoctor -->
+        <rect x="207" y="225" width="78" height="56" rx="0" fill="#FAF8F3" stroke="#C8C0AC" stroke-width="1" />
+        <text x="246" y="248" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-weight="500" fill="#1F3A5F">GEOdoctor</text>
+        <text x="246" y="265" text-anchor="middle" font-size="9" fill="#6B6B6B">Diagnóstico</text>
+        <text x="246" y="276" text-anchor="middle" font-size="9" fill="#6B6B6B">técnico GEO</text>
+
+        <!-- Sub-tool 2: S.A.M. -->
+        <rect x="287" y="225" width="78" height="56" rx="0" fill="#FAF8F3" stroke="#C8C0AC" stroke-width="1" />
+        <text x="326" y="248" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-weight="500" fill="#1F3A5F">S.A.M.</text>
+        <text x="326" y="265" text-anchor="middle" font-size="9" fill="#6B6B6B">Semantic Alignment</text>
+        <text x="326" y="276" text-anchor="middle" font-size="9" fill="#6B6B6B">Machine</text>
+
+        <!-- Caption row at bottom -->
+        <line x1="20" y1="310" x2="720" y2="310" stroke="#E5DFD2" stroke-width="1" />
+        <g font-size="10" fill="#6B6B6B">
+          <text x="85" y="332" text-anchor="middle">Modelado de la marca</text>
+          <text x="285" y="332" text-anchor="middle">Estudio + Plan + Monitor</text>
+          <text x="485" y="332" text-anchor="middle">Lectura del relato real</text>
+          <text x="660" y="332" text-anchor="middle">Fuentes que sostienen IA</text>
+        </g>
+      </svg>
     </div>
 
     <div class="pullquote">
