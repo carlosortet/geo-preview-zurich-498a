@@ -703,9 +703,18 @@
     color: rgba(255,255,255,0.7);
     line-height: 1.7;
   }
-  .cta-block .cta-meta strong { color: var(--paper); }
+  .cta-block strong,
+  .cta-block .cta-meta strong,
+  .cta-block p strong,
+  .cta-block em { color: var(--paper); }
+  .cta-block p strong { font-weight: 600; }
 
   /* ----------- Responsive ----------- */
+  @media (max-width: 960px) {
+    .zvm-row { grid-template-columns: 1fr; gap: 14px; padding: 18px 0; }
+    .zvm-gap { justify-self: start; padding: 6px 14px; }
+  }
+
   @media (max-width: 720px) {
     .page { padding: 64px 24px; }
     .cover { padding: 48px 24px; }
@@ -713,12 +722,38 @@
     .kpi-grid.cols-4 { grid-template-columns: 1fr 1fr !important; }
     .two-col, .two-col-asym { grid-template-columns: 1fr; gap: 32px; }
     .cta-block { padding: 48px 28px; }
+    .cta-block h2 { font-size: 28px; }
+    .cta-block p { font-size: 16px; }
     .bar-row { grid-template-columns: 100px 1fr 50px; gap: 12px; }
     .verbatim { padding: 24px; }
+    .verbatim-header { flex-direction: column; gap: 6px; }
     .pullquote { font-size: 22px; padding-left: 20px; margin: 32px 0; }
     .cover-bottom { flex-direction: column; align-items: flex-start; }
     .cover-id { text-align: left; }
     .doc-footer { padding: 32px 24px; flex-direction: column; }
+    .cover-meta { flex-direction: column; gap: 12px; }
+    table.data { font-size: 12px; }
+    table.data th, table.data td { padding: 10px 8px; }
+    /* "Lo que diferencia" 3-col cards → single column on mobile */
+    [class*="grid-template-columns: repeat(3, 1fr)"] { display: block; }
+    /* Strongest / Mínimo cards 2-col → single col */
+    .page .page-narrow > div[style*="grid-template-columns: 1fr 1fr"] { display: block; }
+    .page .page-narrow > div[style*="grid-template-columns: 1fr 1fr"] > div { margin-bottom: 12px; }
+  }
+
+  @media (max-width: 520px) {
+    .page { padding: 48px 18px; }
+    .cover { padding: 36px 18px; }
+    h1.section-title { font-size: 32px; }
+    .section-lead { font-size: 18px; }
+    .cover-title { font-size: 40px; }
+    .kpi-grid, .kpi-grid.cols-4 { grid-template-columns: 1fr !important; }
+    .kpi-value { font-size: 36px; }
+    .pullquote { font-size: 19px; padding-left: 16px; }
+    .cta-block { padding: 36px 20px; }
+    .cta-block h2 { font-size: 24px; }
+    table.data { font-size: 11px; }
+    table.data th, table.data td { padding: 8px 6px; }
   }
 
   /* ----------- Zurich vs Mercado (comparison) ----------- */
