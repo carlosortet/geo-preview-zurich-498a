@@ -1414,9 +1414,113 @@
       Top 15. Hay 25 marcas con menciones detectables en la lectura piloto. La auditoría completa amplía la cobertura competitiva a +50 marcas con segmentación por producto.
     </p>
 
-    <h3>Zurich vs media del mercado · Business Impact por atributo</h3>
+    <h3>Posicionamiento competitivo · radar de atributos</h3>
     <p>
-      El <strong>Business Impact Score (BIS)</strong> es una métrica composite que combina visibilidad, posición en la respuesta, sentiment y capacidad de recomendación, en escala 0–100. La comparativa frente a la media del mercado revela en qué dimensiones Zurich está ganando autoridad real frente al conjunto de competidores detectados.
+      Vista sintética del <strong>Business Impact Score (BIS)</strong> por atributo. El eje exterior representa el valor máximo (100). Cuanto más se acerca la silueta al exterior, mayor es la autoridad que la IA reconoce en ese atributo.
+    </p>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0;">
+      <div style="border:1px solid var(--rule-strong); padding:16px 20px; background:var(--paper);">
+        <div style="color:var(--positive); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;">↗ Atributo más fuerte</div>
+        <div style="font-family:var(--serif); font-size:22px; color:var(--ink); margin-top:8px; font-weight:500; line-height:1.15;">Solidez Financiera</div>
+        <div style="font-family:var(--mono); font-size:12px; color:var(--ink-muted); margin-top:6px;">BIS 87,5 · gap +41,0 vs mercado</div>
+      </div>
+      <div style="border:1px solid var(--rule-strong); padding:16px 20px; background:var(--paper);">
+        <div style="color:var(--highlight); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;">⚑ Mínimo relativo de Zurich</div>
+        <div style="font-family:var(--serif); font-size:22px; color:var(--ink); margin-top:8px; font-weight:500; line-height:1.15;">Precio</div>
+        <div style="font-family:var(--mono); font-size:12px; color:var(--ink-muted); margin-top:6px;">BIS 79,9 · gap +41,8 vs mercado</div>
+      </div>
+    </div>
+
+    <div style="background:var(--paper); border:1px solid var(--rule-strong); padding:24px 16px 18px; margin: 16px 0;">
+      <svg viewBox="0 0 640 500" width="100%" style="display:block; max-width:720px; margin:0 auto; font-family: var(--sans);" aria-label="Radar de atributos: Zurich vs mercado">
+        <!-- Grid rings (octagons) -->
+        <polygon points="320,215 351.8,228.2 365,260 351.8,291.8 320,305 288.2,291.8 275,260 288.2,228.2" fill="none" stroke="#E5DFD2" stroke-width="1" />
+        <polygon points="320,170 383.6,196.4 410,260 383.6,323.6 320,350 256.4,323.6 230,260 256.4,196.4" fill="none" stroke="#E5DFD2" stroke-width="1" />
+        <polygon points="320,125 415.5,164.5 455,260 415.5,355.5 320,395 224.5,355.5 185,260 224.5,164.5" fill="none" stroke="#E5DFD2" stroke-width="1" />
+        <polygon points="320,80 447.3,132.7 500,260 447.3,387.3 320,440 192.7,387.3 140,260 192.7,132.7" fill="none" stroke="#C8C0AC" stroke-width="1.2" />
+
+        <!-- Axes -->
+        <g stroke="#E5DFD2" stroke-width="1">
+          <line x1="320" y1="260" x2="320" y2="80" />
+          <line x1="320" y1="260" x2="447.3" y2="132.7" />
+          <line x1="320" y1="260" x2="500" y2="260" />
+          <line x1="320" y1="260" x2="447.3" y2="387.3" />
+          <line x1="320" y1="260" x2="320" y2="440" />
+          <line x1="320" y1="260" x2="192.7" y2="387.3" />
+          <line x1="320" y1="260" x2="140" y2="260" />
+          <line x1="320" y1="260" x2="192.7" y2="132.7" />
+        </g>
+
+        <!-- Scale tick labels on top axis -->
+        <g font-size="9" fill="#A8A496" font-family="JetBrains Mono, SF Mono, monospace">
+          <text x="324" y="218" text-anchor="start">25</text>
+          <text x="324" y="173" text-anchor="start">50</text>
+          <text x="324" y="128" text-anchor="start">75</text>
+          <text x="324" y="83" text-anchor="start">100</text>
+        </g>
+
+        <!-- MERCADO (real, dashed) -->
+        <polygon points="320,176.3 373.8,206.2 375.8,260 391.6,331.6 320,336.7 266.8,313.2 235,260 271.5,211.5"
+                 fill="#A8A496" fill-opacity="0.10" stroke="#8A8678" stroke-width="1.6" stroke-dasharray="5,3" />
+
+        <!-- MAPFRE (estimación ilustrativa) -->
+        <polygon points="320,143 390,190 410,260 406.6,346.6 320,389.6 246.2,333.8 221,260 241.1,181.1"
+                 fill="#B8924E" fill-opacity="0.07" stroke="#B8924E" stroke-width="1.6" />
+
+        <!-- ZURICH (real, filled) -->
+        <polygon points="320,102.5 429.7,150.3 474.8,260 428.2,368.2 320,413 215.7,364.3 174.7,260 218.3,158.3"
+                 fill="#1F3A5F" fill-opacity="0.18" stroke="#1F3A5F" stroke-width="2.4" />
+
+        <!-- ZURICH data points -->
+        <g fill="#1F3A5F">
+          <circle cx="320" cy="102.5" r="3.5" />
+          <circle cx="429.7" cy="150.3" r="3.5" />
+          <circle cx="474.8" cy="260" r="3.5" />
+          <circle cx="428.2" cy="368.2" r="3.5" />
+          <circle cx="320" cy="413" r="3.5" />
+          <circle cx="215.7" cy="364.3" r="3.5" />
+          <circle cx="174.7" cy="260" r="3.5" />
+          <circle cx="218.3" cy="158.3" r="3.5" />
+        </g>
+
+        <!-- Axis labels -->
+        <g font-size="12" font-weight="600" fill="#1A1A1A">
+          <text x="320" y="56" text-anchor="middle">Solidez Financiera</text>
+          <text x="465" y="116" text-anchor="start">Tecnología</text>
+          <text x="520" y="264" text-anchor="start">Automation</text>
+          <text x="465" y="412" text-anchor="start">Mobile-App</text>
+          <text x="320" y="466" text-anchor="middle">Red de Talleres</text>
+          <text x="175" y="412" text-anchor="end">Personalización</text>
+          <text x="120" y="264" text-anchor="end">Transparencia</text>
+          <text x="175" y="116" text-anchor="end">Precio</text>
+        </g>
+      </svg>
+
+      <!-- Legend -->
+      <div style="display:flex; gap:28px; justify-content:center; margin-top:16px; flex-wrap:wrap; font-family:var(--sans); font-size:12px; color:var(--ink-soft); border-top:1px solid var(--rule); padding-top:14px;">
+        <span style="display:inline-flex; align-items:center; gap:8px;">
+          <span style="width:24px; height:3px; background:#1F3A5F;"></span>
+          <strong style="color:var(--ink);">Zurich</strong> · datos reales del piloto
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:8px;">
+          <span style="width:24px; height:0; border-top:2px dashed #8A8678;"></span>
+          <strong style="color:var(--ink);">Media del mercado</strong> · datos reales del piloto
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:8px;">
+          <span style="width:24px; height:3px; background:#B8924E;"></span>
+          <strong style="color:var(--ink);">Mapfre</strong> · estimación ilustrativa
+        </span>
+      </div>
+    </div>
+
+    <p style="font-size:12px; color:var(--ink-muted); font-style:italic; margin-top: 4px;">
+      Las líneas de Zurich y media del mercado son datos reales del piloto (Gemini 2.5 Flash Lite). La línea de Mapfre es una <strong>estimación ilustrativa</strong> que muestra el tipo de comparativa por competidor que entrega la auditoría completa con significancia estadística.
+    </p>
+
+    <h3 style="margin-top:48px;">Zurich vs media del mercado · Business Impact por atributo</h3>
+    <p>
+      Detalle numérico. El <strong>Business Impact Score (BIS)</strong> es una métrica composite que combina visibilidad, posición en la respuesta, sentiment y capacidad de recomendación, en escala 0–100.
     </p>
 
     <div class="zvm-block">
